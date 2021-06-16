@@ -4,18 +4,19 @@ package com.javalesson.oop;
 public class Dog {
     private static int dogsCount;
 
-    private int paws;
-    private int tail;
+    public static final int PAWS = 4;
+    public static final int TAIL = 1;
     private String name;
     private String breed;
+    private Size size = Size.UNDEFINED;
 
-    public void setSize(String size) {
-        if (size.equalsIgnoreCase("Big") || size.equalsIgnoreCase("Small")
-                || size.equalsIgnoreCase("Average"))
-            this.size = size;
-        else {
-            System.out.println("Size mast be: Big, Average, Small");
-        }
+
+    public Size getSize() {
+        return size;
+    }
+
+    public void setSize(Size size) {
+        this.size=size;
     }
 
     public Dog() {
@@ -27,11 +28,6 @@ public class Dog {
         return dogsCount;
     }
 
-    public String getSize() {
-        return size;
-    }
-
-    private String size;
 
     public void setName(String name) {
         this.name = name;
@@ -39,20 +35,6 @@ public class Dog {
 
     public String getName() {
         return name;
-    }
-
-    public void setPaws(int paws) {
-        if (paws == 4) {
-            this.paws = paws;
-        } else {
-            this.paws = 4;
-            System.out.println("Wrong paws count!");
-            System.out.println("Correct number is 4!");
-        }
-    }
-
-    public int getPaws() {
-        return paws;
     }
 
     public void setBreed(String breed) {
@@ -63,28 +45,21 @@ public class Dog {
         return breed;
     }
 
-    public void setTail(int tail) {
-        if (tail == 1) {
-            this.tail = tail;
-        } else {
-            this.tail = 1;
-            System.out.println("Wrong tail count!");
-            System.out.println("Correct number is 1!");
-        }
-    }
-
-    public int getTail() {
-        return tail;
-    }
-
     public void bark() {
-        if (size.equalsIgnoreCase("Big")) {
-            System.out.println("Wof-Wof");
-        } else if (size.equalsIgnoreCase("Average")) {
-            System.out.println("Raf-Raf");
-        } else {
-            System.out.println("Tyaf-Tyaf");
-        }
+       switch (size){
+           case BIG:case VERY_BIG:
+               System.out.println("Wof-Wof");
+               break;
+           case AVERAGE:
+               System.out.println("Raf-Raf");
+               break;
+           case SMALL:case VERY_SMALL:
+               System.out.println("Tyaf-Tyaf");
+               break;
+           default:
+               System.out.println("Size is undefined");
+       }
+
     }
 
     public void bite() {
